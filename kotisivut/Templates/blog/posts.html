@@ -1,8 +1,5 @@
-<html>
-	<head>
-		<title>Jannen kotisivut</title>
-	</head>
-	<body>
+{% extends 'base.html' %}
+	{% block content %}
 		<h1><center>Blogisivun testailua</center></h1>
 		{% if all_posts %}
 		<ul>
@@ -19,5 +16,4 @@
 		{% endfor %}
 		</ul> 
 		{% endif %}
-	</body>
-</html>
+	{% endblock %}

@@ -1,16 +1,7 @@
-<html>
-	<head>
-		<title>Jannen kotisivut</title>
-	</head>
-	<body>
-		<a href="/">Home</a><br>
-		<a href='/blog'>blogi</a><br>
-		<a href=''>referenssiprojektit</a><br>
+{% extends 'base.html' %}
 
-		<center><h1>Nämä ovat jannen kotisivut</h1></center>
-		<br>
+	{% block content %}
 		<br>
 		<p>Nämä ovat kotisivuni, joita aloin rakentaa tutustuakseni <br/>muutoksiin Django v1.9:ssä ja opetellakseni käyttämään AngularJS:ää.</p>
 		<br>
-	</body>
-</html>
+	{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+	{% block content %}
+
+	<h2>Lisää postaus</h2>
+	<form id="postaus_form" method="post" action="/blog/add_post/"
+		enctype="multipart/form-data">
+	{% csrf_token %}
+
+	{{ form }}
+
+	<input type="submit" name="tallenna" value="Tallenna">
+	</form>
+
+	{% endblock %}

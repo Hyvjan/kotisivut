@@ -2,6 +2,7 @@
 	{% block content %}
 		<h1><center>Blogisivun testailua</center></h1>
 		<a href='/blog/add_post'>Add a new post</a>
+		<a href="{% url 'logout' %}">Log out</a>
 		{% if all_posts %}
 		<ul>
 		{% for post in all_posts %}

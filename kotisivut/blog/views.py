@@ -8,9 +8,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 def posts_list(request):
 	all_posts = Post.objects.all().order_by('-created_at')
-	t=loader.get_template('blog/posts.html')
-	c = Context({'all_posts': all_posts, })
-	return HttpResponse(t.render(c))
+	return render_to_response('blog/posts.html', {'all_posts': all_posts, })
 
 @login_required
 def add_post(request):
@@ -24,4 +22,10 @@ def add_post(request):
 			print form.errors
 	else:
 		form=PostForm()
-	return render_to_response('blog/add_post.html', {'form':form},context)
+	return render_to_response('blog/add_post.html', {'form':form}, context)
+
+@login_required
+def delete_post(request, pk):
+	post=get_object_or_404(Post, pk=pk)
+	post.delete()
+	return redirect('posts_list')

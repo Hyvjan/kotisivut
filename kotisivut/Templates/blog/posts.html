@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 	{% block content %}
 		<h1><center>Blogisivun testailua</center></h1>
-		<a href='/blog/add_post'>Add a new post</a>
-		<a href="{% url 'logout' %}">Log out</a>
+		<u><a href='/blog/add_post'>Add a new post</a></u>
+		<u><a href="{% url 'logout' %}">Log out</a></u>
 		{% if all_posts %}
 		<ul>
 		{% for post in all_posts %}
@@ -15,6 +15,7 @@
 		<br>
 		<p>{{post.content}}</p>
 		<br>
+		<a href="{% url 'delete_post' pk=post.pk %}">Poista postaus</a>
 		{% endfor %}
 		</ul> 
 		{% endif %}

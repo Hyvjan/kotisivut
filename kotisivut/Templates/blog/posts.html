@@ -16,6 +16,7 @@
 		<p>{{post.content}}</p>
 		<br>
 		<a href="{% url 'delete_post' pk=post.pk %}">Poista postaus</a>
+		<a href="{% url 'edit_post' pk=post.pk %}">Editoi postausta</a>
 		{% endfor %}
 		</ul> 
 		{% endif %}

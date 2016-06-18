@@ -29,3 +29,18 @@ def delete_post(request, pk):
 	post=get_object_or_404(Post, pk=pk)
 	post.delete()
 	return redirect('posts_list')
+
+@login_required
+def edit_post(request, pk):
+	context=RequestContext(request)
+	post = get_object_or_404(Post, pk=pk)
+	if request.method == 'POST':
+		form = PostForm(request.POST, instance=post)
+		if form.is_valid():
+			post = form.save(commit=True)
+			return redirect('posts_list')
+	else:
+		form=PostForm(instance=post)
+	return render_to_response('blog/add_post.html', {'form':form}, context)
+
+

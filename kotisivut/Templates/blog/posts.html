@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
+	{% load staticfiles %}
 	{% block content %}
 		<h1><center>Blogisivun testailua</center></h1>
 		<u><a href='/blog/add_post'>Add a new post</a></u>
 		<u><a href="{% url 'logout' %}">Log out</a></u>
 		{% if all_posts %}
+		<div class="page-header">
 		<ul>
 		{% for post in all_posts %}
 		<hr>
@@ -15,9 +17,10 @@
 		<br>
 		<p>{{post.content}}</p>
 		<br>
-		<a href="{% url 'delete_post' pk=post.pk %}">Poista postaus</a>
-		<a href="{% url 'edit_post' pk=post.pk %}">Editoi postausta</a>
+		<u><a href="{% url 'delete_post' pk=post.pk %}">Poista postaus</a></u>
+		<u><a href="{% url 'edit_post' pk=post.pk %}">Editoi postausta</a></u>
 		{% endfor %}
 		</ul> 
+		</div>
 		{% endif %}
 	{% endblock %}

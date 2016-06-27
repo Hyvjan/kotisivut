@@ -6,12 +6,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<link rel="icon" href="http://getbootstrap.com/favicon.ico">
+		<link rel="icon" href="http://www.irunoninsulin.com/wp-content/uploads/2012/03/ironman-logo.jpg">
 
 		<title>Jannen kotisivut</title>
 
+		{% load staticfiles %}
 		<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-		<link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
+		<link rel="stylesheet" href="{% static 'css/blog.css' %}">
 	</head>
 
 	<body>
@@ -49,6 +50,12 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		<div class="panel-footer">
+			<center>
+			<p>Contact webmaster:</p>
+			<p>  janne.j.hyvonen@gmail.com  </p>
+			</center>
 		</div>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

@@ -9,8 +9,9 @@
 		<link rel="icon" href="http://www.irunoninsulin.com/wp-content/uploads/2012/03/ironman-logo.jpg">
 
 		<title>Jannen kotisivut</title>
-
+		
 		{% load staticfiles %}
+
 		<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="{% static 'css/blog.css' %}">
 	</head>
@@ -45,6 +46,15 @@
 				</div>
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 					<div>
+
+					{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+	{% endif %}
+	
 						{% block content %}
 						{% endblock %}
 					</div>

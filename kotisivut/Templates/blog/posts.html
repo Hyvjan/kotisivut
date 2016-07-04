@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 	{% load staticfiles %}
 	{% block content %}
+	<div class="page-header">
 		<h1><center>Blogisivun testailua</center></h1>
 		<u><a href='/blog/add_post'>Add a new post</a></u>
 		<u><a href="{% url 'logout' %}">Log out</a></u>
 		{% if all_posts %}
-		<div class="page-header">
+		<div class="-header">
 		<ul>
 		{% for post in all_posts %}
 		<hr>

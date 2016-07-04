@@ -9,8 +9,8 @@
 
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
-  padding-top: 50px;
-  margin-bottom: 60px;
+  padding-top: 5px;
+  margin-bottom: 10px;
 }
 
 
@@ -58,7 +58,7 @@ body {
 /* Sidebar navigation */
 .nav-sidebar {
   margin-right: -21px; /* 20px padding + 1px border */
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   margin-left: -20px;
 }
 .nav-sidebar > li > a {
@@ -78,21 +78,41 @@ body {
  */
 
 .main {
-  padding: 20px;
+  padding: 5px;
 }
 @media (min-width: 768px) {
   .main {
-    padding-right: 40px;
-    padding-left: 40px;
+    padding-right: 5px;
+    padding-left: 5px;
   }
 }
 .main .page-header {
   margin-top: 0;
+  font-family: 'Indie Flower', cursive;
+  font-size: 20px;
+  text-align: center;
+  padding-bottom: 10px;
 }
 
-h1 {
-	color: #0000FF;
+.main .page-header h1 {
+	font-family: 'Indie Flower', cursive;
+	padding-top: 30px;
+	font-size: 60px;
 }
+
+.main .page-header h2 {
+	font-family: 'Indie Flower', cursive;
+	font-size: 40px;
+}
+
+.navbar-brand {
+	font-family: 'Mogra', cursive;
+}
+
+.navbar-right {
+	font-family: 'Mogra', cursive;
+}
+
 
 /*
  * Placeholder dashboard ideas
@@ -119,4 +139,8 @@ h1 {
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 60px;
+}
+
+.content {
+	overflow-y: auto;
 }

@@ -4,7 +4,9 @@
 	<div class="page-header">
 		<h1><center>Blogisivun testailua</center></h1>
 		<u><a href='/blog/add_post'>Add a new post</a></u>
+		{% if user.is_authenticated %}
 		<u><a href="{% url 'logout' %}">Log out</a></u>
+		{% endif %}
 		{% if all_posts %}
 		<div class="-header">
 		<ul>
@@ -16,8 +18,10 @@
 		<br>
 		<p>{{post.content}}</p>
 		<br>
+		{% if user.is_authenticated %}
 		<u><a href="{% url 'delete_post' pk=post.pk %}">Poista postaus</a></u>
 		<u><a href="{% url 'edit_post' pk=post.pk %}">Editoi postausta</a></u>
+		{% endif %}
 		{% endfor %}
 		</ul> 
 		</div>

@@ -1,15 +1,19 @@
 {% extends 'base.html' %}
+{% load bootstrap_tags %}
 
 	{% block content %}
+	<div class="content-form">
+	<div class="page-header">
+		<h1><center>Lisää postaus</center></h1>
+	</div>
 
-	<h2>Lisää postaus</h2>
 	<form id="postaus_form" method="post" action="/blog/add_post/"
 		enctype="multipart/form-data">
 	{% csrf_token %}
 
-	{{ form }}
+	{{ form| as_bootstrap }}
 
 	<input type="submit" name="tallenna" value="Tallenna">
 	</form>
-
+	</div>
 	{% endblock %}

@@ -6,15 +6,23 @@
 	<p>Your username and password didn't match. Please try again.</p>
 	{% endif %}
 
-	<div class="page-header">
-		<h1><center>Ole hyvä ja kirjaudu sisään</center></h1>
-	</div>
+	<div class="container">
 	<form method="post" action {% url 'login' %}>
 	{% csrf_token %}
-	{{ form | as_bootstrap}}
+	<table>
+	<tr>
+		<td>{{ form.username.label_tag }}</td>
+		<td>{{ form.username }}</td>
+	</tr>
+	<tr>
+		<td>{{ form.password.label_tag }}</td>
+		<td>{{ form.password }}</td>
+	</tr>
+	</table>
+	
 <input type="submit" value="login" />
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
-
+</div>
 
 {% endblock %}

@@ -144,3 +144,8 @@ body {
 .content {
 	overflow-y: auto;
 }
+
+.content-form {
+	overflow-y: auto;
+	margin-bottom: 60px;
+}

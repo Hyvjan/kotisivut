@@ -2,9 +2,12 @@ from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import Context, loader
 from django.contrib.auth import authenticate, login
-
+from main.models import viewCounter
+from django.db.models import F
 
 # Create your views here.
 def index(request):
-	return render_to_response('main/index.html')
+	viewCounter.objects.filter(counterName='index').update(views=F('views')+1)
+	katselukerrat=viewCounter.objects.get(counterName='index')
+	return render_to_response('main/index.html', {'katselukerrat': katselukerrat})
 

@@ -5,11 +5,15 @@ from blog.models import Post
 from blog.forms import PostForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from main.models import viewCounter
+from django.db.models import F
 
 # Create your views here.
 def posts_list(request):
 	all_posts = Post.objects.all().order_by('-created_at')
-	return render_to_response('blog/posts.html', {'all_posts': all_posts} , RequestContext(request) )
+	viewCounter.objects.filter(counterName='blog').update(views=F('views')+1)
+	katselukerrat=viewCounter.objects.get(counterName='blog')
+	return render_to_response('blog/posts.html', {'all_posts': all_posts, 'katselukerrat':katselukerrat} , RequestContext(request) )
 
 @login_required
 def add_post(request):

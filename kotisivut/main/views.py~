@@ -2,7 +2,7 @@ from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import Context, loader
 from django.contrib.auth import authenticate, login
-from main.models import viewCounter
+from .models import viewCounter
 from django.db.models import F
 
 # Create your views here.

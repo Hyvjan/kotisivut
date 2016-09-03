@@ -13,7 +13,12 @@ class indexTests(TestCase):
 		self.assertEquals(landing_page.func, index)
 
 	def test_returns_correct_html(self):
-		katselukerrat_aluksi=viewCounter.objects.get(counterName='index')
+
+		#Luodaan viewCounter ilmentyma index-sivulle
+		counter=viewCounter(counterName='index')
+		counter.save()
+
+		katselukerrat_aluksi=viewCounter.objects.get(counterName='index').views
 		index=self.client.get('/')
-		katselukerrat_lopuksi=viewCounter.objects.get(counterName='index')
+		katselukerrat_lopuksi=viewCounter.objects.get(counterName='index').views
 		self.assertEquals(katselukerrat_aluksi+1, katselukerrat_lopuksi)

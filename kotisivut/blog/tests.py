@@ -5,6 +5,7 @@ from django.core.urlresolvers import resolve, reverse
 from blog.views import posts_list, add_post
 from django.contrib.auth.models import User, AnonymousUser
 from django.shortcuts import render_to_response
+from .forms import PostForm
 
 # Create your tests here.
 class indexTests(TestCase):
@@ -65,6 +66,39 @@ class add_postTests(TestCase):
 
 		self.assertEqual(response.status_code, 200)
 
+
+	def test_add_post_form_works_with_correct_data(self):
+
+		from pprint import pformat
+
+		data={'title':'test blogging', 'content': 'This is test blogging content' }
+		form = PostForm(data=data)
+		form.save(commit=True)
+
+		all_posts = Post.objects.all().order_by('-created_at')
+		self.assertEquals(len(all_posts), 1)
+		self.assertEquals(all_posts[0].title, u'test blogging')
+		self.assertEquals(all_posts[0].content, u'This is test blogging content')
+
+	def test_add_post_form_gives_error_if_title_missing(self):
+
+		from pprint import pformat
+
+		data={'title':'', 'content': 'This is test blogging content' }
+		form = PostForm(data=data)
+		
+
+		self.assertEquals(form.errors, {'title': [u'This field is required.']})
+
+	def test_add_post_form_gives_error_if_content_missing(self):
+
+		from pprint import pformat
+
+		data={'title':'test blogging', 'content': '' }
+		form = PostForm(data=data)
+		
+
+		self.assertEquals(form.errors, {'content': [u'This field is required.']})
 
 	"""	
 class delete_postTests(TestCase):

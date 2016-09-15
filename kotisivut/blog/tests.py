@@ -1,11 +1,13 @@
-from django.test import TestCase, RequestFactory
+from django.test import TestCase, RequestFactory, Client, modify_settings
 from main.models import viewCounter
 from blog.models import Post
 from django.core.urlresolvers import resolve, reverse
-from blog.views import posts_list, add_post
+from blog.views import posts_list, add_post, delete_post
 from django.contrib.auth.models import User, AnonymousUser
 from django.shortcuts import render_to_response
 from .forms import PostForm
+from django.contrib import messages
+import mock
 
 # Create your tests here.
 class indexTests(TestCase):
@@ -43,6 +45,7 @@ class indexTests(TestCase):
 
 
 class add_postTests(TestCase):
+
 
 	def test_unlogged_user_cannot_access_add_post_view(self):
 		
@@ -100,28 +103,37 @@ class add_postTests(TestCase):
 
 		self.assertEquals(form.errors, {'content': [u'This field is required.']})
 
-	"""	
+		
 class delete_postTests(TestCase):
+
+	@classmethod
+	def setUpTestData(cls):
+		post1 = Post(title="post1", content="test posting 1")
+		post1.save()
+
+		post2=Post(title="post2", content="test posting 2")
+		post2.save()
 
 	def test_unlogged_user_cannot_access_delete_post_view(self):
 		
 		self.factory = RequestFactory()
-		request = self.factory.get('/blog/delete_post/')
+		request = self.factory.get('/blog/delete_post/1')
 		request.user = AnonymousUser()
-		response = add_post(request)
+		response = delete_post(request)
 
 		self.assertEqual(response.status_code, 302)
+		all_posts = Post.objects.all().order_by('-created_at')
+		self.assertEquals(len(all_posts), 2)
 
+	
 	def test_logged_in_user_can_access_delete_post(self):
 
+		self.client= Client()
+		self.user=User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
 		
-		self.factory = RequestFactory()
-		self.user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
-		
-		request = self.factory.get('/blog/add_post/')
-		request.user = self.user
-		response = add_post(request)
+		self.client.login(username='john', password='johnpassword')
+		response=self.client.get('/blogdelete_post/2')
 
-		self.assertEqual(response.status_code, 200)		
-
-"""
+		self.assertEqual(response.status_code, 302)		
+		all_posts = Post.objects.all().order_by('-created_at')
+		self.assertEquals(len(all_posts), 1)

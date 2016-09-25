@@ -1,27 +1,24 @@
-
 from django.test import TestCase, RequestFactory
 from main.models import viewCounter
 from django.core.urlresolvers import resolve
-from .views import index
+from main.views import index
 
 
 
 # Create your tests here.
 class indexTests(TestCase):
 
-	@classmethod
-	def setUpClass(cls):
-		request_factory = RequestFactory()
-		cls.request = request_factory.get('/')
-		cls.request.session = {}
+	def test_root_resolves_to_index_view(self):
+		landing_page=resolve('/')
+		self.assertEquals(landing_page.func, index)
 
-	def test_viewCounter_index_works(self):
-		origin_value = viewCounter.objects.get(counterName='index')
-		index = resolve('/')
-		new_value = viewCounter.objects.get(counterName='index')
-		self.assertEquals(origin_value+1, new_value)
+	def test_returns_correct_html(self):
 
-			
-	@classmethod
-	def tearDownClass(cls):
-		pass
+		#Luodaan viewCounter ilmentyma index-sivulle
+		counter=viewCounter(counterName='index')
+		counter.save()
+
+		katselukerrat_aluksi=viewCounter.objects.get(counterName='index').views
+		index=self.client.get('/')
+		katselukerrat_lopuksi=viewCounter.objects.get(counterName='index').views
+		self.assertEquals(katselukerrat_aluksi+1, katselukerrat_lopuksi)

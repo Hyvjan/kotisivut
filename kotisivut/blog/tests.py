@@ -166,3 +166,14 @@ class edit_PostTest(TestCase):
 		response = self.client.get('/blogedit_post/1')
 
 		self.assertEqual(response.status_code, 200)
+
+	def test_logged_user_can_edit_post(self):
+
+		self.client=Client()
+		self.user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+		self.client.login(username='john', password='johnpassword')
+		response = self.client.post('/blogedit_post/1', {'title':'changed title', 'content':'changed content'})
+
+		all_posts = Post.objects.all()
+		self.assertEquals(all_posts[0].title, u'changed title')
+		self.assertEquals(all_posts[0].content, u'changed content')

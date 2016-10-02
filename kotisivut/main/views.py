@@ -11,4 +11,5 @@ def index(request):
 	katselukerrat=viewCounter.objects.get(counterName='index')
 	return render_to_response('main/index.html', {'katselukerrat': katselukerrat})
 
-
+def cv(request):
+	return render_to_response('main/cv.html')

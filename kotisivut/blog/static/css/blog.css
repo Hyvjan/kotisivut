@@ -151,3 +151,20 @@ body {
 	overflow-y: auto;
 	margin-bottom: 60px;
 }
+
+.upper_item {
+
+  background-color: grey;
+  border-radius: 20px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.item {
+
+  background-color: green;
+  border-radius: 20px;
+  padding: 10px;
+  margin-bottom: 5px;
+
+}

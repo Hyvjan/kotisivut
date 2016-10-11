@@ -4,11 +4,15 @@ from django.db import models
 
 # Create your models here.
 class viewCounter(models.Model):
+
 	index='index'
 	blog='blog'
+	cv='cv'
+
 	page_list=(
 		(index, 'index'),
 		(blog, 'blog'),
+		(cv, 'cv'),
 		)
 	counterName=models.CharField(
 		max_length=20,

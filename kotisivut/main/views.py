@@ -12,4 +12,6 @@ def index(request):
 	return render_to_response('main/index.html', {'katselukerrat': katselukerrat})
 
 def cv(request):
-	return render_to_response('main/cv.html')
+	viewCounter.objects.filter(counterName='cv').update(views=F('views')+1)
+	katselukerrat=viewCounter.objects.get(counterName='cv')
+	return render_to_response('main/cv.html', {'katselukerrat': katselukerrat})

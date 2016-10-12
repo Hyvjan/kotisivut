@@ -16,7 +16,19 @@ class indexTests(TestCase):
 		post_lists=resolve('/blog')
 		self.assertEquals(post_lists.func, posts_list)
 
-	def test_returns_correct_html(self):
+	def test_uses_right_template(self):
+
+		self.client = Client()
+
+		counter=viewCounter(counterName='blog')
+		counter.save()
+
+		blog = self.client.get('/blog')
+
+		self.assertTemplateUsed(
+		blog, 'blog/posts.html')
+
+	def test_returns_correct_views_value(self):
 
 		#Luodaan viewCounter ilmentyma index-sivulle
 		counter=viewCounter(counterName='blog')
@@ -166,6 +178,8 @@ class edit_PostTest(TestCase):
 		response = self.client.get('/blogedit_post/1')
 
 		self.assertEqual(response.status_code, 200)
+		self.assertTemplateUsed(
+		response, 'blog/add_post.html')
 
 	def test_logged_user_can_edit_post(self):
 

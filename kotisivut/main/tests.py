@@ -1,7 +1,7 @@
 from django.test import TestCase, RequestFactory, Client
 from main.models import viewCounter
 from django.core.urlresolvers import resolve
-from main.views import index, cv
+from main.views import index, cv, projects
 from django.shortcuts import render_to_response
 
 
@@ -66,3 +66,31 @@ class cvTests(TestCase):
 
 		self.assertTemplateUsed(
 		cv, 'main/cv.html')
+
+class projectsTests(TestCase):
+
+	def test_projects_resolves_to_projects_view(self):
+
+		projects_page = resolve('/projects')
+		self.assertEquals(projects_page.func, projects)
+
+	def test_uses_correct_template(self):
+
+		self.client = Client()
+
+		projects = self.client.get('/projects')
+
+		self.assertTemplateUsed(
+			projects, 'main/projects.html')
+
+
+	def test_viewCounter_works(self):
+
+		counter=viewCounter(counterName='projects')
+		counter.save()
+
+		katselukerrat_aluksi=viewCounter.objects.get(counterName='projects').views
+		index=self.client.get('/projects')
+		katselukerrat_lopuksi=viewCounter.objects.get(counterName='projects').views
+		self.assertEquals(katselukerrat_aluksi+1, katselukerrat_lopuksi)
+

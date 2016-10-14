@@ -85,7 +85,6 @@ body {
   .main {
     padding-right: 5px;
     padding-left: 5px;
-    background-color: #00FFFF;
   }
 }
 .main .page-header {
@@ -151,4 +150,21 @@ body {
 .content-form {
 	overflow-y: auto;
 	margin-bottom: 60px;
+}
+
+.upper_item {
+
+  background-color: grey;
+  border-radius: 20px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.item {
+
+  background-color: green;
+  border-radius: 20px;
+  padding: 10px;
+  margin-bottom: 5px;
+
 }

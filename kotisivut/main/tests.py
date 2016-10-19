@@ -77,6 +77,9 @@ class projectsTests(TestCase):
 	def test_uses_correct_template(self):
 
 		self.client = Client()
+		
+		counter=viewCounter(counterName='projects')
+		counter.save()
 
 		projects = self.client.get('/projects')
 

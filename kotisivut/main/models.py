@@ -8,11 +8,13 @@ class viewCounter(models.Model):
 	index='index'
 	blog='blog'
 	cv='cv'
+	projects='projects'
 
 	page_list=(
 		(index, 'index'),
 		(blog, 'blog'),
 		(cv, 'cv'),
+		(projects, 'projects'),
 		)
 	counterName=models.CharField(
 		max_length=20,

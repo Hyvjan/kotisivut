@@ -15,3 +15,9 @@ def cv(request):
 	viewCounter.objects.filter(counterName='cv').update(views=F('views')+1)
 	katselukerrat=viewCounter.objects.get(counterName='cv')
 	return render_to_response('main/cv.html', {'katselukerrat': katselukerrat})
+
+def projects(request):
+
+	viewCounter.objects.filter(counterName='projects').update(views=F('views')+1)
+	katselukerrat=viewCounter.objects.get(counterName='projects')
+	return render_to_response('main/projects.html', {'katselukerrat': katselukerrat})

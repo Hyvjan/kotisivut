@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+from passwords import SALAINEN_SANA
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'co@c29v0o!2!)z1hgjq&7php@5(l_$)@u=j1na^^*x0bbi3$40'
+SECRET_KEY = SALAINEN_SANA
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
